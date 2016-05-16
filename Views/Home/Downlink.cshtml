@@ -1,0 +1,19 @@
+﻿<div class="container-fluent">
+    <div class="row">
+        <div class="col-lg-12">
+            <div kendo-grid id="downlinkChanels"
+                 k-options="downlinkChannelsOptions"
+                 k-editable="'popup'"
+                 k-on-change="onChannelSelected(dataItem)"
+                 k-toolbar="[{ name : 'create', text : 'ADD'}, {template : '<p class=&quot;grid-title&quot;>DOWNLINK CHANNELS</p>'} ]"></div>
+        </div>
+    </div>
+</div>
+<div kendo-notification id="notif"
+     k-hide-on-click="false"
+     k-auto-hide-after="5000"></div>
+<style>
+    .grid-title {
+        float: right;
+    }
+</style>

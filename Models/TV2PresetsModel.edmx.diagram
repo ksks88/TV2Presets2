@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="257776ea1e064317b3596d1f515ab42d" Name="Diagram1" >
+        <EntityTypeShape EntityType="TV2PresetsModel.DownlinkChannel" Width="1.5" PointX="0.625" PointY="0.625" />
+        <EntityTypeShape EntityType="TV2PresetsModel.Satellite" Width="1.5" PointX="2.625" PointY="0.625" />
+        <EntityTypeShape EntityType="TV2PresetsModel.SatellitePosition" Width="1.5" PointX="4.625" PointY="0.625" />
+        <EntityTypeShape EntityType="TV2PresetsModel.FixedAntenna" Width="1.5" PointX="6.5" PointY="0.625" />
+        <EntityTypeShape EntityType="TV2PresetsModel.SteerableAntenna" Width="1.5" PointX="8.25" PointY="0.625" />
+        <EntityTypeShape EntityType="TV2PresetsModel.IRD" Width="1.5" PointX="0.625" PointY="4.25" />
+        <EntityTypeShape EntityType="TV2PresetsModel.EXTCard" Width="1.5" PointX="2.5" PointY="4.25" />
+        <EntityTypeShape EntityType="TV2PresetsModel.BISSCode" Width="1.5" PointX="4.25" PointY="4.25" />
+        <EntityTypeShape EntityType="TV2PresetsModel.UplinkChannel" Width="1.5" PointX="10.5" PointY="0.625" />
+        <AssociationConnector Association="TV2PresetsModel.SatellitePositionSatellite" />
+        <AssociationConnector Association="TV2PresetsModel.SatellitePositionFixedAntenna" />
+        <AssociationConnector Association="TV2PresetsModel.DownlinkChannelSatellite" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

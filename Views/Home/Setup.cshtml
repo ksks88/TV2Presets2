@@ -1,0 +1,76 @@
+﻿<div class="container-fluid">
+    <tabset>
+        <tab heading="positions, satellites, and fixed antennas">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div kendo-grid id="satellitePosition"
+                         k-options="satellitePositionsOptions"
+                         k-editable="'popup'"
+                         k-toolbar="[{ name : 'create', text : 'ADD'}, {template : '<p class=&quot;grid-title&quot;>POSITIONS</p>'} ]"></div>
+                </div>
+                <div class="col-sm-4">
+                    <div kendo-grid id="satellites"
+                         k-options="satellitesOptions"
+                         k-editable="'popup'"
+                         k-toolbar="[{ name : 'create', text : 'ADD'}, {template : '<p class=&quot;grid-title&quot;>SATELLITES</p>'}]"></div>
+                </div>
+                <div class="col-sm-4">
+                    <div kendo-grid id="fixedAntennas"
+                         k-options="fixedAntennasOptions"
+                         k-editable="'popup'"
+                         k-toolbar="[{ name : 'create', text : 'ADD'}, {template : '<p class=&quot;grid-title&quot;>FIXED ANTENNAS</p>'}]"></div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="steerable antennas">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div kendo-grid id="steerable-antenas"
+                         k-options="steerableAntennasOptions"
+                         k-editable="true"
+                         k-toolbar="[{ name : 'create', text : 'ADD'},{ name : 'save', text : 'SAVE'}, {template : '<p class=&quot;grid-title&quot;>STEERABLE ANTENNAS</p>'}]"></div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="IRDs">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div kendo-grid id="irds"
+                         k-options="irdsOptions"
+                         k-editable="true"
+                         k-toolbar="[{ name : 'create', text : 'ADD'}, {name : 'save', text: 'SAVE'}, {name : 'cancel', text: 'CANCEL'}, {template : '<p class=&quot;grid-title&quot;>IRDs</p>'}]"></div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="BISS codes">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div kendo-grid id="biss-codes"
+                         k-options="bissCodesOptions"
+                         k-editable="true"
+                         k-toolbar="[{ name : 'create', text : 'ADD'}, {name : 'save', text: 'SAVE'}, {name : 'cancel', text: 'CANCEL'}, {template : '<p class=&quot;grid-title&quot;>BISS CODES</p>'}]"></div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="EXT cards">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div kendo-grid id="ext-cards"
+                         k-options="extCardsOptions"
+                         k-editable="true"
+                         k-toolbar="[{ name : 'create', text : 'ADD'}, {name : 'save', text: 'SAVE'}, {name : 'cancel', text: 'CANCEL'}, {template : '<p class=&quot;grid-title&quot;>EXT cards</p>'}]"></div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+<div kendo-notification id="notif"
+     k-hide-on-click="false"
+     k-auto-hide-after="5000"></div>
+<style>
+    .grid-title {
+        float: right;
+        margin: 0 auto;
+    }
+</style>
+

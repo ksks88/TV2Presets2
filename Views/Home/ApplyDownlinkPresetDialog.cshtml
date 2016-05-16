@@ -1,0 +1,137 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Apply preset for channel {{ dwlChannel.name }}</h3>
+</div>
+<div class="modal-body" cg-busy="{promise:promise,templateUrl:'',message:'Applying preset',backdrop:'true',delay:0,minDuration:0}">
+    <div class="panel panel-default">
+        <div style="cursor: pointer;" popover="{{ isCollapsed ? 'show more' : 'show less' }}" popover-trigger="mouseenter" class="panel-heading" ng-click="isCollapsed = !isCollapsed">{{ dwlChannel.name }}</div>
+        <div class="panel-body" collapse="isCollapsed">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Frequency</td>
+                        <td>{{ dwlChannel.frequency }} MHz</td>
+                    </tr>
+                    <tr>
+                        <td>Symbol rate</td>
+                        <td>{{ dwlChannel.symbolRate }} MSps</td>
+                    </tr>
+                    <tr>
+                        <td>Polarisation</td>
+                        <td>{{ PolarisationEnum }}</td>
+                    </tr>
+                    <tr>
+                        <td>FEC</td>
+                        <td>{{ FECEnum }}</td>
+                    </tr>
+                    <tr>
+                        <td>Roll off</td>
+                        <td>{{ RollOffEnum }}</td>
+                    </tr>
+                    <tr>
+                        <td>SD or HD</td>
+                        <td>{{ SDHD }}</td>
+                    </tr>
+                    <tr>
+                        <td>EBU Channel</td>
+                        <td>{{ dwlChannel.ebuChannel }}</td>
+                    </tr>
+                    <tr>
+                        <td>Modulation</td>
+                        <td>{{ ModulationEnum }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body" kendo-validator id="validator">
+            <ul>
+                <li>
+                    <label for="selectIRD">IRD : </label>
+                    <select required id="selectIRD" name="selectIRD"
+                            data-required-msg="Select IRD!"
+                            kendo-combo-box
+                            k-placeholder="'Select IRD'"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'"
+                            k-data-source="IRDsDataSource"></select>
+                    <span class="k-invalid-msg" data-for="selectIRD"></span>
+                </li>
+                <li>
+                    <label for="selectAntennaType">ANTENNA Type : </label>
+                    <select required id="selectAntennaType" name="selectAntennaType"
+                            data-required-msg="Select Antenna type!"
+                            kendo-combo-box
+                            k-on-change="setAntenaDataSource(kendoEvent)"
+                            k-placeholder="'Select Antenna Type'"
+                            k-data-source="['Fixed', 'Steerable']"
+                            k-ng-model="selectedAntennaType"></select>
+                    <span class="k-invalid-msg" data-for="selectAntennaType"></span>
+                </li>
+                <li>
+                    <label for="selectAntenna">ANTENNA : </label>
+                    <select required id="selectAntenna" name="selectAntenna"
+                            data-required-msg="Select Antenna!"
+                            kendo-combo-box
+                            k-placeholder="'Select Antenna'"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'"
+                            k-data-source="AntennasDataSource"
+                            k-rebind="AntennasDataSource"
+                            ng-disabled="!(selectedAntennaType)"></select>
+                    <span class="k-invalid-msg" data-for="selectAntenna"></span>
+                </li>
+                <li>
+                    <label for="selectBiss">BISS Code : </label>
+                    <select id="selectBiss" name="selectBiss"
+                            data-required-msg="Select Antenna!"
+                            kendo-combo-box
+                            k-placeholder="'Select BISS [optional]'"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'"
+                            k-data-source="BISSCodesDataSource"></select>
+                </li>
+                <li>
+                    <label for="selectEXT">EXT Card : </label>
+                    <select id="selectEXT" name="selectEXT"
+                            data-required-msg="Select Antenna!"
+                            kendo-combo-box
+                            k-placeholder="'Select EXT [optional]'"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'"
+                            k-data-source="EXTCardsDataSource"></select>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <alert type="{{ applystatus == 'Preset applyed succesfully' ? 'success' : 'danger' }}" ng-show="applystatus" close="applystatus = null">{{ applystatus }}</alert>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="apply()">Apply</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+
+<style>
+    #validator ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #validator li {
+        margin: 5px 0;
+    }
+
+    label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    span.k-tooltip {
+        margin-left: 6px;
+    }
+</style>
+

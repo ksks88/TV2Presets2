@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TV2PresetsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TV2PresetsModelStoreContainer">
+    <EntitySet Name="DownlinkChannels" EntityType="TV2PresetsModel.Store.DownlinkChannels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Satellites" EntityType="TV2PresetsModel.Store.Satellites" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SatellitePositions" EntityType="TV2PresetsModel.Store.SatellitePositions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FixedAntennas" EntityType="TV2PresetsModel.Store.FixedAntennas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SteerableAntennas" EntityType="TV2PresetsModel.Store.SteerableAntennas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IRDs" EntityType="TV2PresetsModel.Store.IRDs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EXTCards" EntityType="TV2PresetsModel.Store.EXTCards" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BISSCodes" EntityType="TV2PresetsModel.Store.BISSCodes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UplinkChannels" EntityType="TV2PresetsModel.Store.UplinkChannels" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SatellitePositionSatellite" Association="TV2PresetsModel.Store.SatellitePositionSatellite">
+      <End Role="SatellitePosition" EntitySet="SatellitePositions" />
+      <End Role="Satellite" EntitySet="Satellites" />
+    </AssociationSet>
+    <AssociationSet Name="SatellitePositionFixedAntenna" Association="TV2PresetsModel.Store.SatellitePositionFixedAntenna">
+      <End Role="SatellitePosition" EntitySet="SatellitePositions" />
+      <End Role="FixedAntenna" EntitySet="FixedAntennas" />
+    </AssociationSet>
+    <AssociationSet Name="DownlinkChannelSatellite" Association="TV2PresetsModel.Store.DownlinkChannelSatellite">
+      <End Role="DownlinkChannel" EntitySet="DownlinkChannels" />
+      <End Role="Satellite" EntitySet="Satellites" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DownlinkChannels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Frequency" Type="float" Nullable="false" />
+    <Property Name="SymbolRate" Type="float" Nullable="false" />
+    <Property Name="Polarisation" Type="int" Nullable="false" />
+    <Property Name="FEC" Type="int" Nullable="false" />
+    <Property Name="RollOff" Type="int" Nullable="false" />
+    <Property Name="SDHD" Type="int" Nullable="false" />
+    <Property Name="EBUChannel" Type="bit" Nullable="false" />
+    <Property Name="Modulation" Type="int" Nullable="false" />
+    <Property Name="SatelliteId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Satellites">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SatellitePositionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SatellitePositions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FixedAntennas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="XHighInput" Type="int" Nullable="true" />
+    <Property Name="XLowInput" Type="int" Nullable="true" />
+    <Property Name="YHighInput" Type="int" Nullable="true" />
+    <Property Name="YLowInput" Type="int" Nullable="true" />
+    <Property Name="XHighFreq" Type="float" Nullable="true" />
+    <Property Name="XLowFreq" Type="float" Nullable="true" />
+    <Property Name="YHighFreq" Type="float" Nullable="true" />
+    <Property Name="YLowFreq" Type="float" Nullable="true" />
+    <Property Name="SatellitePositionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SteerableAntennas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Azimuth" Type="float" Nullable="false" />
+    <Property Name="Elevation" Type="float" Nullable="false" />
+    <Property Name="Polarization" Type="float" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="XHighInput" Type="int" Nullable="true" />
+    <Property Name="XLowInput" Type="int" Nullable="true" />
+    <Property Name="YHighInput" Type="int" Nullable="true" />
+    <Property Name="YLowInput" Type="int" Nullable="true" />
+    <Property Name="XHighFreq" Type="float" Nullable="true" />
+    <Property Name="XLowFreq" Type="float" Nullable="true" />
+    <Property Name="YHighFreq" Type="float" Nullable="true" />
+    <Property Name="YLowFreq" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="IRDs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatrixOutput" Type="int" Nullable="false" />
+    <Property Name="MatrixInput" Type="int" Nullable="false" />
+    <Property Name="IRDType" Type="int" Nullable="false" />
+    <Property Name="SerialNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="RegisterNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FWVersion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Comments" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IPAddress" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EXTCards">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatrixOutput" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="BISSCodes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BISSType" Type="int" Nullable="false" />
+    <Property Name="BISSKey" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UplinkChannels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Satellite" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Frequency" Type="float" Nullable="false" />
+    <Property Name="SymbolRate" Type="float" Nullable="false" />
+    <Property Name="Polarisation" Type="int" Nullable="false" />
+    <Property Name="DataInterfaceRate" Type="float" Nullable="false" />
+    <Property Name="FEC" Type="int" Nullable="false" />
+    <Property Name="RollOff" Type="int" Nullable="false" />
+    <Property Name="Modulation" Type="int" Nullable="false" />
+    <Property Name="LO_Frequency" Type="int" Nullable="false" />
+    <Property Name="Power" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="SatellitePositionSatellite">
+    <End Role="SatellitePosition" Type="TV2PresetsModel.Store.SatellitePositions" Multiplicity="1" />
+    <End Role="Satellite" Type="TV2PresetsModel.Store.Satellites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SatellitePosition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Satellite">
+        <PropertyRef Name="SatellitePositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SatellitePositionFixedAntenna">
+    <End Role="SatellitePosition" Type="TV2PresetsModel.Store.SatellitePositions" Multiplicity="1" />
+    <End Role="FixedAntenna" Type="TV2PresetsModel.Store.FixedAntennas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SatellitePosition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FixedAntenna">
+        <PropertyRef Name="SatellitePositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DownlinkChannelSatellite">
+    <End Role="DownlinkChannel" Type="TV2PresetsModel.Store.DownlinkChannels" Multiplicity="*" />
+    <End Role="Satellite" Type="TV2PresetsModel.Store.Satellites" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Satellite">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DownlinkChannel">
+        <PropertyRef Name="SatelliteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TV2PresetsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="TV2PresetsModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DownlinkChannels" EntityType="TV2PresetsModel.DownlinkChannel" />
+          <EntitySet Name="Satellites" EntityType="TV2PresetsModel.Satellite" />
+          <EntitySet Name="SatellitePositions" EntityType="TV2PresetsModel.SatellitePosition" />
+          <EntitySet Name="FixedAntennas" EntityType="TV2PresetsModel.FixedAntenna" />
+          <EntitySet Name="SteerableAntennas" EntityType="TV2PresetsModel.SteerableAntenna" />
+          <EntitySet Name="IRDs" EntityType="TV2PresetsModel.IRD" />
+          <EntitySet Name="EXTCards" EntityType="TV2PresetsModel.EXTCard" />
+          <EntitySet Name="BISSCodes" EntityType="TV2PresetsModel.BISSCode" />
+          <EntitySet Name="UplinkChannels" EntityType="TV2PresetsModel.UplinkChannel" />
+          <AssociationSet Name="SatellitePositionSatellite" Association="TV2PresetsModel.SatellitePositionSatellite">
+            <End Role="SatellitePosition" EntitySet="SatellitePositions" />
+            <End Role="Satellite" EntitySet="Satellites" />
+          </AssociationSet>
+          <AssociationSet Name="SatellitePositionFixedAntenna" Association="TV2PresetsModel.SatellitePositionFixedAntenna">
+            <End Role="SatellitePosition" EntitySet="SatellitePositions" />
+            <End Role="FixedAntenna" EntitySet="FixedAntennas" />
+          </AssociationSet>
+          <AssociationSet Name="DownlinkChannelSatellite" Association="TV2PresetsModel.DownlinkChannelSatellite">
+            <End Role="DownlinkChannel" EntitySet="DownlinkChannels" />
+            <End Role="Satellite" EntitySet="Satellites" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DownlinkChannel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Frequency" Type="Double" Nullable="false" />
+          <Property Name="SymbolRate" Type="Double" Nullable="false" />
+          <Property Name="Polarisation" Type="TV2PresetsModel.PolarisationEnum" Nullable="false" />
+          <Property Name="FEC" Type="TV2PresetsModel.FECEnum" Nullable="false" />
+          <Property Name="RollOff" Type="TV2PresetsModel.RollOffEnum" Nullable="false" />
+          <Property Name="SDHD" Type="TV2PresetsModel.SDHD" Nullable="false" />
+          <Property Name="EBUChannel" Type="Boolean" Nullable="false" />
+          <Property Name="Modulation" Type="TV2PresetsModel.ModulationEnum" Nullable="false" />
+          <NavigationProperty Name="Satellite" Relationship="TV2PresetsModel.DownlinkChannelSatellite" FromRole="DownlinkChannel" ToRole="Satellite" />
+          <Property Name="SatelliteId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Satellite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="SatellitePosition" Relationship="TV2PresetsModel.SatellitePositionSatellite" FromRole="Satellite" ToRole="SatellitePosition" />
+          <Property Name="SatellitePositionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DownlinkChannels" Relationship="TV2PresetsModel.DownlinkChannelSatellite" FromRole="Satellite" ToRole="DownlinkChannel" />
+        </EntityType>
+        <EnumType Name="PolarisationEnum">
+          <Member Name="Horizontal" Value="1" />
+          <Member Name="Vertical" Value="2" />
+        </EnumType>
+        <EnumType Name="FECEnum">
+          <Member Name="NONE" Value="1" />
+          <Member Name="FEC12" Value="2" />
+          <Member Name="FEC23" Value="3" />
+          <Member Name="FEC34" Value="4" />
+          <Member Name="FEC56" Value="5" />
+          <Member Name="FEC67" Value="6" />
+          <Member Name="FEC78" Value="7" />
+          <Member Name="FEC89" Value="8" />
+          <Member Name="AUTO" Value="9" />
+          <Member Name="FEC14" Value="15" />
+          <Member Name="FEC13" Value="16" />
+          <Member Name="FEC25" Value="17" />
+          <Member Name="FEC35" Value="18" />
+          <Member Name="FEC45" Value="19" />
+          <Member Name="FEC910" Value="20" />
+          <Member Name="FEC1930" Value="1930" />
+          <Member Name="FEC3245" Value="3245" />
+          <Member Name="FEC1730" Value="1730" />
+        </EnumType>
+        <EnumType Name="RollOffEnum">
+          <Member Name="RollOff20" Value="0" />
+          <Member Name="RollOff25" Value="2" />
+          <Member Name="RollOff35" Value="1" />
+          <Member Name="RollOff5" Value="3" />
+          <Member Name="RollOff10" Value="4" />
+          <Member Name="RollOff15" Value="5" />
+          <Member Name="RollOff30" Value="6" />
+        </EnumType>
+        <EnumType Name="ModulationEnum">
+          <Member Name="DVBS" Value="0" />
+          <Member Name="DVBS2" Value="2" />
+          <Member Name="NS3" Value="9" />
+        </EnumType>
+        <EnumType Name="SDHD" UnderlyingType="Int32">
+          <Member Name="SD" Value="1" />
+          <Member Name="HD" Value="2" />
+          <Member Name="MX" Value="3" />
+        </EnumType>
+        <EntityType Name="SatellitePosition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" annotation:StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Satellites" Relationship="TV2PresetsModel.SatellitePositionSatellite" FromRole="SatellitePosition" ToRole="Satellite" />
+          <NavigationProperty Name="FixedAntennas" Relationship="TV2PresetsModel.SatellitePositionFixedAntenna" FromRole="SatellitePosition" ToRole="FixedAntenna" />
+        </EntityType>
+        <EntityType Name="FixedAntenna">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" />
+          <Property Name="XHighInput" Type="Int32" Nullable="true" />
+          <Property Name="XLowInput" Type="Int32" Nullable="true" />
+          <Property Name="YHighInput" Type="Int32" Nullable="true" />
+          <Property Name="YLowInput" Type="Int32" Nullable="true" />
+          <Property Name="XHighFreq" Type="Double" Nullable="true" />
+          <Property Name="XLowFreq" Type="Double" Nullable="true" />
+          <Property Name="YHighFreq" Type="Double" Nullable="true" />
+          <Property Name="YLowFreq" Type="Double" Nullable="true" />
+          <NavigationProperty Name="SatellitePosition" Relationship="TV2PresetsModel.SatellitePositionFixedAntenna" FromRole="FixedAntenna" ToRole="SatellitePosition" />
+          <Property Name="SatellitePositionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SteerableAntenna">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Azimuth" Type="Double" Nullable="false" />
+          <Property Name="Elevation" Type="Double" Nullable="false" />
+          <Property Name="Polarization" Type="Double" Nullable="false" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" />
+          <Property Name="XHighInput" Type="Int32" Nullable="true" />
+          <Property Name="XLowInput" Type="Int32" Nullable="true" />
+          <Property Name="YHighInput" Type="Int32" Nullable="true" />
+          <Property Name="YLowInput" Type="Int32" Nullable="true" />
+          <Property Name="XHighFreq" Type="Double" Nullable="true" />
+          <Property Name="XLowFreq" Type="Double" Nullable="true" />
+          <Property Name="YHighFreq" Type="Double" Nullable="true" />
+          <Property Name="YLowFreq" Type="Double" Nullable="true" />
+        </EntityType>
+        <EntityType Name="IRD">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="MatrixOutput" Type="Int32" Nullable="false" />
+          <Property Name="MatrixInput" Type="Int32" Nullable="false" />
+          <Property Name="IRDType" Type="TV2PresetsModel.IRDTypes" Nullable="false" />
+          <Property Name="SerialNumber" Type="String" Nullable="true" />
+          <Property Name="RegisterNumber" Type="String" Nullable="true" />
+          <Property Name="FWVersion" Type="String" Nullable="true" />
+          <Property Name="Comments" Type="String" Nullable="true" />
+          <Property Name="IPAddress" Type="String" Nullable="false" />
+        </EntityType>
+        <EnumType Name="IRDTypes">
+          <Member Name="RX8200" Value="1" />
+          <Member Name="TX1260" Value="2" />
+          <Member Name="TX1290" Value="3" />
+          <Member Name="RX8200S2ip" Value="4" />
+        </EnumType>
+        <EntityType Name="EXTCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="MatrixOutput" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" Nullable="true" />
+        </EntityType>
+        <EnumType Name="BISSTypeEnum">
+          <Member Name="MODE_1" Value="0" />
+          <Member Name="MODE_E_FIXED" Value="1" />
+          <Member Name="MODE_E_TV" Value="2" />
+          <Member Name="MODE_E_USER1" Value="3" />
+          <Member Name="MODE_E_USER2" Value="4" />
+          <Member Name="RAS" Value="5" />
+        </EnumType>
+        <EntityType Name="BISSCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="BISSType" Type="TV2PresetsModel.BISSTypeEnum" Nullable="false" />
+          <Property Name="BISSKey" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UplinkChannel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Satellite" Type="String" Nullable="false" />
+          <Property Name="Frequency" Type="Double" Nullable="false" />
+          <Property Name="SymbolRate" Type="Double" Nullable="false" />
+          <Property Name="Polarisation" Type="TV2PresetsModel.PolarisationEnum" Nullable="false" />
+          <Property Name="DataInterfaceRate" Type="Double" Nullable="false" />
+          <Property Name="FEC" Type="TV2PresetsModel.EncoderFECEnums" Nullable="false" />
+          <Property Name="RollOff" Type="TV2PresetsModel.EncoderRollOffEnum" Nullable="false" />
+          <Property Name="Modulation" Type="TV2PresetsModel.EncoderModulationEnum" Nullable="false" />
+          <Property Name="LO_Frequency" Type="TV2PresetsModel.encoderLOFreqEnum" Nullable="false" />
+          <Property Name="Power" Type="Double" Nullable="false" />
+        </EntityType>
+        <EnumType Name="EncoderFECEnums">
+          <Member Name="CODE_RATE_14" Value="1" />
+          <Member Name="CODE_RATE_13" Value="2" />
+          <Member Name="CODE_RATE_25" Value="3" />
+          <Member Name="CODE_RATE_12" Value="4" />
+          <Member Name="CODE_RATE_35" Value="5" />
+          <Member Name="CODE_RATE_23" Value="6" />
+          <Member Name="CODE_RATE_34" Value="7" />
+          <Member Name="CODE_RATE_45" Value="8" />
+          <Member Name="CODE_RATE_56" Value="9" />
+          <Member Name="CODE_RATE_78" Value="10" />
+          <Member Name="CODE_RATE_89" Value="11" />
+          <Member Name="CODE_RATE_910" Value="12" />
+        </EnumType>
+        <EnumType Name="EncoderRollOffEnum">
+          <Member Name="RollOff20" Value="1" />
+          <Member Name="RollOff25" Value="2" />
+          <Member Name="RollOff35" Value="3" />
+        </EnumType>
+        <EnumType Name="EncoderModulationEnum">
+          <Member Name="QPSK" Value="1" />
+          <Member Name="QPSKS2" Value="2" />
+          <Member Name="QPSKS2P" Value="3" />
+          <Member Name="Eight_PSK" Value="4" />
+          <Member Name="Eight_PSK_S2" Value="5" />
+          <Member Name="Eight_PSK_S2P" Value="6" />
+          <Member Name="Sixteen_QAM" Value="7" />
+          <Member Name="Sixteen_APSK_S2" Value="8" />
+          <Member Name="Sixteen_APSK_S2P" Value="9" />
+        </EnumType>
+        <EnumType Name="encoderLOFreqEnum">
+          <Member Name="Freq_4900_MHz_non_inv" Value="1" />
+          <Member Name="Freq_7375_MHz_inv" Value="2" />
+          <Member Name="Freq_7600_MHz_inv" Value="3" />
+          <Member Name="Freq_7875_MHz_inv" Value="4" />
+          <Member Name="Freq_8175_MHz_inv" Value="5" />
+          <Member Name="Freq_10000_MHz_non_inv" Value="6" />
+          <Member Name="Freq_12800_MHz_non_inv" Value="7" />
+          <Member Name="Freq_13050_MHz_non_inv" Value="8" />
+          <Member Name="Freq_15450_MHz_non_inv" Value="9" />
+          <Member Name="Freq_0_MHz_dir_Lband" Value="10" />
+        </EnumType>
+        <Association Name="SatellitePositionSatellite">
+          <End Type="TV2PresetsModel.SatellitePosition" Role="SatellitePosition" Multiplicity="1" />
+          <End Type="TV2PresetsModel.Satellite" Role="Satellite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SatellitePosition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satellite">
+              <PropertyRef Name="SatellitePositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SatellitePositionFixedAntenna">
+          <End Type="TV2PresetsModel.SatellitePosition" Role="SatellitePosition" Multiplicity="1" />
+          <End Type="TV2PresetsModel.FixedAntenna" Role="FixedAntenna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SatellitePosition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FixedAntenna">
+              <PropertyRef Name="SatellitePositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DownlinkChannelSatellite">
+          <End Type="TV2PresetsModel.DownlinkChannel" Role="DownlinkChannel" Multiplicity="*" />
+          <End Type="TV2PresetsModel.Satellite" Role="Satellite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Satellite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DownlinkChannel">
+              <PropertyRef Name="SatelliteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TV2PresetsModelStoreContainer" CdmEntityContainer="TV2PresetsModelContainer">
+    <EntitySetMapping Name="DownlinkChannels">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.DownlinkChannel)">
+        <MappingFragment StoreEntitySet="DownlinkChannels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="SymbolRate" ColumnName="SymbolRate" />
+          <ScalarProperty Name="Polarisation" ColumnName="Polarisation" />
+          <ScalarProperty Name="FEC" ColumnName="FEC" />
+          <ScalarProperty Name="RollOff" ColumnName="RollOff" />
+          <ScalarProperty Name="SDHD" ColumnName="SDHD" />
+          <ScalarProperty Name="EBUChannel" ColumnName="EBUChannel" />
+          <ScalarProperty Name="Modulation" ColumnName="Modulation" />
+          <ScalarProperty Name="SatelliteId" ColumnName="SatelliteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Satellites">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.Satellite)">
+        <MappingFragment StoreEntitySet="Satellites">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SatellitePositionId" ColumnName="SatellitePositionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SatellitePositions">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.SatellitePosition)">
+        <MappingFragment StoreEntitySet="SatellitePositions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FixedAntennas">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.FixedAntenna)">
+        <MappingFragment StoreEntitySet="FixedAntennas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="XHighInput" ColumnName="XHighInput" />
+          <ScalarProperty Name="XLowInput" ColumnName="XLowInput" />
+          <ScalarProperty Name="YHighInput" ColumnName="YHighInput" />
+          <ScalarProperty Name="YLowInput" ColumnName="YLowInput" />
+          <ScalarProperty Name="XHighFreq" ColumnName="XHighFreq" />
+          <ScalarProperty Name="XLowFreq" ColumnName="XLowFreq" />
+          <ScalarProperty Name="YHighFreq" ColumnName="YHighFreq" />
+          <ScalarProperty Name="YLowFreq" ColumnName="YLowFreq" />
+          <ScalarProperty Name="SatellitePositionId" ColumnName="SatellitePositionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SteerableAntennas">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.SteerableAntenna)">
+        <MappingFragment StoreEntitySet="SteerableAntennas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Azimuth" ColumnName="Azimuth" />
+          <ScalarProperty Name="Elevation" ColumnName="Elevation" />
+          <ScalarProperty Name="Polarization" ColumnName="Polarization" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="XHighInput" ColumnName="XHighInput" />
+          <ScalarProperty Name="XLowInput" ColumnName="XLowInput" />
+          <ScalarProperty Name="YHighInput" ColumnName="YHighInput" />
+          <ScalarProperty Name="YLowInput" ColumnName="YLowInput" />
+          <ScalarProperty Name="XHighFreq" ColumnName="XHighFreq" />
+          <ScalarProperty Name="XLowFreq" ColumnName="XLowFreq" />
+          <ScalarProperty Name="YHighFreq" ColumnName="YHighFreq" />
+          <ScalarProperty Name="YLowFreq" ColumnName="YLowFreq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IRDs">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.IRD)">
+        <MappingFragment StoreEntitySet="IRDs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MatrixOutput" ColumnName="MatrixOutput" />
+          <ScalarProperty Name="MatrixInput" ColumnName="MatrixInput" />
+          <ScalarProperty Name="IRDType" ColumnName="IRDType" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="RegisterNumber" ColumnName="RegisterNumber" />
+          <ScalarProperty Name="FWVersion" ColumnName="FWVersion" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXTCards">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.EXTCard)">
+        <MappingFragment StoreEntitySet="EXTCards">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MatrixOutput" ColumnName="MatrixOutput" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BISSCodes">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.BISSCode)">
+        <MappingFragment StoreEntitySet="BISSCodes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BISSType" ColumnName="BISSType" />
+          <ScalarProperty Name="BISSKey" ColumnName="BISSKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UplinkChannels">
+      <EntityTypeMapping TypeName="IsTypeOf(TV2PresetsModel.UplinkChannel)">
+        <MappingFragment StoreEntitySet="UplinkChannels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Satellite" ColumnName="Satellite" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="SymbolRate" ColumnName="SymbolRate" />
+          <ScalarProperty Name="Polarisation" ColumnName="Polarisation" />
+          <ScalarProperty Name="DataInterfaceRate" ColumnName="DataInterfaceRate" />
+          <ScalarProperty Name="FEC" ColumnName="FEC" />
+          <ScalarProperty Name="RollOff" ColumnName="RollOff" />
+          <ScalarProperty Name="Modulation" ColumnName="Modulation" />
+          <ScalarProperty Name="LO_Frequency" ColumnName="LO_Frequency" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
