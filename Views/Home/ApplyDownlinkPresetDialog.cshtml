@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body" cg-busy="{promise:promise,templateUrl:'',message:'Applying preset',backdrop:'true',delay:0,minDuration:0}">
     <div class="panel panel-default">
-        <div style="cursor: pointer;" popover="{{ isCollapsed ? 'show more' : 'show less' }}" popover-trigger="mouseenter" class="panel-heading" ng-click="isCollapsed = !isCollapsed">{{ dwlChannel.name }}</div>
+        <div style="cursor: pointer;" popover="{{ isCollapsed ? 'show more' : 'show less' }}" popover-trigger="mouseenter" class="panel-heading" ng-click="isCollapsed = !isCollapsed">{{ dwlChannel.name }} {{ dwlChannel.satellite.name }}</div>
         <div class="panel-body" collapse="isCollapsed">
             <table class="table">
                 <tbody>
