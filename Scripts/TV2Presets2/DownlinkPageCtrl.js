@@ -400,6 +400,17 @@
                 }
             },
             {
+                field: "modulation",
+                title: "Modulation",
+                editor: modulationEditor,
+                template: function (dataItem) {
+                    return getEnumTextForValue("ModulationEnum", dataItem.modulation);
+                },
+                filterable: {
+                    ui: modulationFilter
+                }
+            },
+            {
                 field: "rollOff",
                 title: "Roll off",
                 editor: rollOffEditor,
@@ -424,17 +435,6 @@
             {
                 field: "ebuChannel",
                 title: "EBU Channel"
-            },
-            {
-                field: "modulation",
-                title: "Modulation",
-                editor: modulationEditor,
-                template: function (dataItem) {
-                    return getEnumTextForValue("ModulationEnum", dataItem.modulation);
-                },
-                filterable: {
-                    ui: modulationFilter
-                }
             },
             { command: [{ name: "edit", text: "" }, { name: "destroy", text: "" }, {text : "apply", click : applyPreset}], title: "action", width : "250px" }
         ],
