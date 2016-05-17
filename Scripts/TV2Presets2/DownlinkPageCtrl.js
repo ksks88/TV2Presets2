@@ -219,6 +219,7 @@
     }
 
     function onDataBound(e) {
+        var grid = $("#downlinkChanels").data("kendoGrid");
         $(grid.tbody).on("click", "td", function (e) {
             var row = $(this).closest("tr");
             var rowIdx = $("tr", grid.tbody).index(row);
