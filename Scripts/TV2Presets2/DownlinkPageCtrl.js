@@ -359,7 +359,21 @@
             {
                 field: "name",
                 title: "Channel name",
-                width : "150px"
+                width: "150px",
+                filterable: {
+                    extra: false, //do not show extra filters
+                    operators: { // redefine the string operators
+                        string: {
+                            contains: "Contains",
+                            eq: "Is equal to",
+                            neq: "Is not equal to",
+                            startswith: "Starts With",
+                            doesnotcontain: "Does not contain",
+                            endswith: "Ends with"
+                        }
+                    }
+
+                }
             },
             {
                 field: "satelliteId",
