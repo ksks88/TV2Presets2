@@ -47,7 +47,7 @@
                 }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#satellitePosition").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
@@ -77,7 +77,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     };
 
     var satellitePositionDropDownEditor = function (container, options) {
@@ -159,7 +159,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             serverPaging: true,
             serverFiltering: true,
             serverSorting: true,
@@ -196,7 +196,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     }
 
     var fixedAntennasOptions = {
@@ -317,7 +317,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             serverPaging: true,
             serverFiltering: true,
             serverSorting: true,
@@ -368,7 +368,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     }
 
     var steerableAntennasOptions = {
@@ -432,7 +432,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#steerable-antenas").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
@@ -462,7 +462,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     };
 
 
@@ -589,7 +589,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#irds").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
@@ -642,7 +642,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     };
 
     var bissCodesOptions = {
@@ -705,7 +705,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#biss-codes").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
@@ -735,7 +735,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     };
     var extCardsOptions = {
         selectable: "row",
@@ -795,7 +795,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#ext-cards").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
@@ -814,7 +814,7 @@
             pageSizes: false,
             buttonCount: 5
         },
-        height: 500
+        
     };
 
 // ***************************  CONTROLLER ********************************
