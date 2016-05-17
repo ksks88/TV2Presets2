@@ -219,7 +219,6 @@
     }
 
     function onDataBound(e) {
-        var grid = $("#downlinkChanels").data("kendoGrid");
         $(grid.tbody).on("click", "td", function (e) {
             var row = $(this).closest("tr");
             var rowIdx = $("tr", grid.tbody).index(row);
@@ -235,10 +234,28 @@
         angular.element("#downlinkChanels").scope().openDialog();
     }
 
+    var gridInit = function (e) {
+        e.sender.dataSource.originalFilter = e.sender.dataSource.filter;
+
+        e.sender.dataSource.filter = function () {
+            if (arguments.length > 0) {
+                this.trigger("filtering", arguments);
+            }
+            var result = e.sender.dataSource.originalFilter.apply(this, arguments);
+            return result;
+        }
+
+        $("#downlinkChanels").data("kendoGrid").dataSource.bind("filtering", function (e) {
+            $("#downlinkChanels th[data-field=" + e[0].filters[0].field + "]").css('color', 'red');
+        });
+
+        onDataBound();
+    }
+
 
     var downlinkChannelsOptions = {
         selectable: "row",
-        dataBound: onDataBound,
+        dataBound: gridInit,
         filterable: {
             extra: false
 
@@ -477,6 +494,7 @@
             $scope.selectedchannel = dataitem;
         }
     }
+    
 
     // register my controller module
     var myControllerModule = angular.module("TV2Presets2.ctrl.downlink", ["TV2Presets2.ctrl.downlink.dialog"]);

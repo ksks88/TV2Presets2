@@ -16,7 +16,7 @@
         $scope.isCollapsed = true;
 
         $scope.AntennasDataSource = [];
-        
+        $scope.selectedAntennaType = "";
 
         $http.get("http://localhost:49423/Api/Enums?enumtype=PolarisationEnum&val=" + dwlChannel.polarisation).success(function (result) {
             $scope.PolarisationEnum = result;
@@ -48,9 +48,21 @@
             $scope.steerableAntennas = result;
         });
 
-        $scope.selectedAntennaType = "";
+        $scope.setAntenaType = function (message, event) {
+            var fixedAntenas = message.satellitePosition.fixedAntennas;
+            if (!(fixedAntenas === undefined || fixedAntenas.length == 0)) {
+                $scope.selectedAntennaType = "Fixed";
+                $scope.AntennasDataSource = dwlChannel.satellite.satellitePosition.fixedAntennas;
+            }
+            else {
+                $scope.selectedAntennaType = "Steerable";
+                $http.get("http://localhost:49423/Api/SteerableAntennas").success(function (result) {
+                    $scope.AntennasDataSource = result;
+                });
+            }
+        }
 
-        $scope.setAntenaDataSource = function(e) {
+        $scope.setAntenaDataSource = function (e) {
             var selectedType = e.sender.value();
             if (selectedType == undefined)
                 return;

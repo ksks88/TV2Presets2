@@ -65,6 +65,7 @@
                             k-on-change="setAntenaDataSource(kendoEvent)"
                             k-placeholder="'Select Antenna Type'"
                             k-data-source="['Fixed', 'Steerable']"
+                            k-on-data-bound="setAntenaType({{dwlChannel.satellite}}, kendoEvent)"
                             k-ng-model="selectedAntennaType"></select>
                     <span class="k-invalid-msg" data-for="selectAntennaType"></span>
                 </li>
