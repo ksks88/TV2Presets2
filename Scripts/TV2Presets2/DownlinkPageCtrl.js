@@ -313,7 +313,9 @@
                             type: "number",
                             validation: {
                                 required: true
-                            }
+                            },
+                            format: "n3",
+                            decimals: 3
                         },
                         polarisation: {
                             validation: {
@@ -377,7 +379,15 @@
             {
                 field: "symbolRate",
                 title: "Symbol rate",
-                format: "{0:#.000 Msps}"
+                format: "{0:#.000 Msps}",
+                editor: function(container, options) {
+                $('<input data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoNumericTextBox({
+                        format: "{0:#.000 Msps}",
+                        decimals: 3
+                    });               
+                }
             },
             {
                 field: "polarisation",
