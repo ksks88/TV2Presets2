@@ -304,7 +304,9 @@
                         frequency: {
                             type: "number",
                             validation: {
-                                required: true
+                                required: true,
+                                min: 10700,
+                                max: 12750 
                             }
                         },
                         symbolRate: {
@@ -338,7 +340,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#downlinkChanels").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
