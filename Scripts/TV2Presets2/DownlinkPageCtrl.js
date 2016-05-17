@@ -321,14 +321,18 @@
                         frequency: {
                             type: "number",
                             validation: {
-                                required: true
+                                required: true,
+                                min: 10700,
+                                max: 12750 
                             }
                         },
                         symbolRate: {
                             type: "number",
                             validation: {
                                 required: true
-                            }
+                            },
+                            format: "n3",
+                            decimals: 3
                         },
                         polarisation: {
                             validation: {
@@ -355,7 +359,7 @@
                     }
                 }
             },
-            pageSize: 10,
+            pageSize: 25,
             error: function (e) {
                 $("#downlinkChanels").data("kendoGrid").dataSource.cancelChanges();
                 var notificationElement = $("#notif").data("kendoNotification");
@@ -392,7 +396,15 @@
             {
                 field: "symbolRate",
                 title: "Symbol rate",
-                format: "{0:#.000 Msps}"
+                format: "{0:#.000 Msps}",
+                editor: function(container, options) {
+                $('<input data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoNumericTextBox({
+                        format: "{0:#.000 Msps}",
+                        decimals: 3
+                    });               
+                }
             },
             {
                 field: "polarisation",
@@ -414,6 +426,17 @@
                 },
                 filterable: {
                     ui: fecFilter
+                }
+            },
+            {
+                field: "modulation",
+                title: "Modulation",
+                editor: modulationEditor,
+                template: function (dataItem) {
+                    return getEnumTextForValue("ModulationEnum", dataItem.modulation);
+                },
+                filterable: {
+                    ui: modulationFilter
                 }
             },
             {
@@ -441,17 +464,6 @@
             {
                 field: "ebuChannel",
                 title: "EBU Channel"
-            },
-            {
-                field: "modulation",
-                title: "Modulation",
-                editor: modulationEditor,
-                template: function (dataItem) {
-                    return getEnumTextForValue("ModulationEnum", dataItem.modulation);
-                },
-                filterable: {
-                    ui: modulationFilter
-                }
             },
             { command: [{ name: "edit", text: "" }, { name: "destroy", text: "" }, {text : "apply", click : applyPreset}], title: "action", width : "250px" }
         ],
