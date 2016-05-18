@@ -1,4 +1,6 @@
 ﻿(function () {
+    var http;
+
     var satellitesDropDownEditor = function(container, options) {
         $("<input required data-text-field='name' data-value-field='id' data-bind='value: " + options.field + "'/>")
             .appendTo(container)
@@ -229,26 +231,36 @@
         });
     }
 
-
     var applyPreset = function (e) {
         e.preventDefault();
         angular.element("#downlinkChanels").scope().openDialog();
     }
 
-    var gridInit = function (e) {
-        e.sender.dataSource.originalFilter = e.sender.dataSource.filter;
+    var duplicateGridItem = function (e, $http) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        dataItem.satellite = null;
 
-        e.sender.dataSource.filter = function () {
-            if (arguments.length > 0) {
-                this.trigger("filtering", arguments);
-            }
-            var result = e.sender.dataSource.originalFilter.apply(this, arguments);
-            return result;
-        }
-
-        $("#downlinkChanels").data("kendoGrid").dataSource.bind("filtering", function (e) {
-            $("#downlinkChanels th[data-field=" + e[0].filters[0].field + "]").css('color', 'red');
+        http.post('http://localhost:49423/Api/DownlinkChannels', dataItem).success(function (data) {
+            console.log(dataItem);
+            $("#downlinkChanels").data("kendoGrid").dataSource.read();
         });
+    }
+
+    var gridInit = function (e) {
+        //e.sender.dataSource.originalFilter = e.sender.dataSource.filter;
+
+        //e.sender.dataSource.filter = function () {
+        //    if (arguments.length > 0) {
+        //        this.trigger("filtering", arguments);
+        //    }
+        //    var result = e.sender.dataSource.originalFilter.apply(this, arguments);
+        //    return result;
+        //}
+
+        //$("#downlinkChanels").data("kendoGrid").dataSource.bind("filtering", function (e) {
+        //    $("#downlinkChanels th[data-field=" + e[0].filters[0].field + "]").css('color', 'red');
+        //});
 
         onDataBound();
     }
@@ -480,7 +492,7 @@
                 field: "ebuChannel",
                 title: "EBU Channel"
             },
-            { command: [{ name: "edit", text: "" }, { name: "destroy", text: "" }, {text : "apply", click : applyPreset}], title: "action", width : "250px" }
+            { command: [{ name: "edit", text: "" }, { name: "destroy", text: "" }, { text: "apply", click: applyPreset }, { text: "duplicate", click: duplicateGridItem }], title: "action", width: "330px" }
         ],
         pageable: {
             refresh: true,
@@ -493,7 +505,8 @@
    
 
 //******************  CONTROLLER   ******************************************************
-    var DownlinkChannelsCtrl = function ($scope, $modal) {
+    var DownlinkChannelsCtrl = function ($scope, $modal, $http) {
+        http = $http;
         $scope.downlinkChannelsOptions = downlinkChannelsOptions;
         $scope.clickedRow = -1;
         $scope.openDialog = function (e) {
@@ -520,10 +533,9 @@
         $scope.onChannelSelected = function(dataitem) {
             $scope.selectedchannel = dataitem;
         }
-    }
-    
+    }    
 
     // register my controller module
     var myControllerModule = angular.module("TV2Presets2.ctrl.downlink", ["TV2Presets2.ctrl.downlink.dialog"]);
-    myControllerModule.controller("DownlinkPageCtrl", ["$scope", "$modal", DownlinkChannelsCtrl]);
+    myControllerModule.controller("DownlinkPageCtrl", ["$scope", "$modal", "$http", DownlinkChannelsCtrl]);
 }());
