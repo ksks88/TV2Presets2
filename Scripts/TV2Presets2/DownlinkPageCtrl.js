@@ -242,7 +242,6 @@
         dataItem.satellite = null;
 
         http.post('http://localhost:49423/Api/DownlinkChannels', dataItem).success(function (data) {
-            console.log(dataItem);
             $("#downlinkChanels").data("kendoGrid").dataSource.read();
         });
     }
