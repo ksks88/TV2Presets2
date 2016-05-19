@@ -1,0 +1,18 @@
+﻿<div class="container-fluid">
+    <div class="row">
+            <div kendo-grid id="biss-codes"
+                    k-options="bissCodesOptions"
+                    k-editable="true"
+                    k-toolbar="[{ name : 'create', text : 'ADD'}, {name : 'save', text: 'SAVE'}, {name : 'cancel', text: 'CANCEL'}, {template : '<p class=&quot;grid-title&quot;>BISS CODES</p>'}]"></div>
+    </div>
+</div>
+<div kendo-notification id="notif"
+     k-hide-on-click="false"
+     k-auto-hide-after="5000"></div>
+<style>
+    .grid-title {
+        float: right;
+        margin: 0 auto;
+    }
+</style>
+

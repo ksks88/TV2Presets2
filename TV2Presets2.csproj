@@ -558,6 +558,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\TV2Presets2\ApplyDownlinkChannelDialogCtrl.js" />
+    <Content Include="Scripts\TV2Presets2\BisscodesPageCtrl.js" />
     <Content Include="Scripts\TV2Presets2\customServices.js" />
     <Content Include="Scripts\TV2Presets2\SetupPageCtrl.js" />
     <Content Include="Scripts\TV2Presets2\UplinkPageCtrl.js" />
@@ -1188,6 +1189,7 @@
     <Content Include="Views\Home\Uplink.cshtml" />
     <Content Include="Views\Home\Setup.cshtml" />
     <Content Include="Views\Home\ApplyDownlinkPresetDialog.cshtml" />
+    <Content Include="Views\Home\Bisscodes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

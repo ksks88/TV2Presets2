@@ -6,6 +6,7 @@
         "TV2Presets2.ctrl.downlink",
         "TV2Presets2.ctrl.uplink",
         "TV2Presets2.ctrl.setup",
+        "TV2Presets2.ctrl.bisscodes",
         "kendo.directives",
         "ui.bootstrap"
     ]);
@@ -28,6 +29,10 @@
             .when("/Setup", {
                 templateUrl: "/Home/Setup",
                 controller: "SetupPageCtrl"
+            })
+            .when("/Bisscodes", {
+                templateUrl: "/Home/Bisscodes",
+                controller: "BisscodesPageCtrl"
             })
             .otherwise({
                 redirectTo: "/"

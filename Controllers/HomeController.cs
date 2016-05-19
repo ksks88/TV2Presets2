@@ -34,6 +34,11 @@ namespace TV2Presets2.Controllers
             return PartialView();
         }
 
+        public ActionResult Bisscodes()
+        {
+            return PartialView();
+        }
+
         public ActionResult ApplyDownlinkPresetDialog()
         {
             return PartialView();
