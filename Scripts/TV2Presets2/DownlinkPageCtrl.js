@@ -237,16 +237,16 @@
 
     var gridInit = function (e) {
         e.sender.dataSource.originalFilter = e.sender.dataSource.filter;
-
         e.sender.dataSource.filter = function () {
             if (arguments.length > 0) {
                 this.trigger("filtering", arguments);
             }
-            var result = e.sender.dataSource.originalFilter.apply(this, arguments);
-            return result;
+
+            //var result = e.sender.dataSource.originalFilter.apply(this, arguments);
+            //return result;
         }
 
-        $("#downlinkChanels").data("kendoGrid").dataSource.bind("filtering", function (e) {
+        e.sender.dataSource.bind("filtering", function (e) {
             $("#downlinkChanels th[data-field=" + e[0].filters[0].field + "]").css('color', 'red');
         });
 
@@ -259,7 +259,6 @@
         dataBound: gridInit,
         filterable: {
             extra: false
-
         },
         dataSource: {
             type: "json",
@@ -405,8 +404,19 @@
             },
             {
                 field: "frequency",
-                title: "Frequency",
-                format: "{0:#.000 MHz}"
+                title: "Frequency[Mhz]",
+                format: "{0:#.000 MHz}",
+                editor: function (container, options) {
+                    $('<input data-bind="value:' + options.field + '"/>')
+                        .appendTo(container)
+                        .kendoNumericTextBox({
+                            format: "{0:#.000 Mhz}",
+                            decimals: 3,
+                            value: 10700,
+                            min: 10700,
+                            max: 12750
+                        });
+                }
             },
             {
                 field: "symbolRate",
@@ -497,7 +507,7 @@
         $scope.downlinkChannelsOptions = downlinkChannelsOptions;
         $scope.clickedRow = -1;
         $scope.openDialog = function (e) {
-            var grid = $("#downlinkChanels").data("kendoGrid"),
+            var grid = $("#downlinkChanels").data("kendoGrid")
                 row = grid.tbody.find(">tr:not(.k-grouping-row)").eq($scope.clickedRow);
             grid.select(row);
             //here to open modal dialog
