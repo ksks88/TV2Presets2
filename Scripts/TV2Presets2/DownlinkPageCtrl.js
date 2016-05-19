@@ -246,30 +246,15 @@
         });
     }
 
-    var gridInit = function (e) {
-        e.sender.dataSource.originalFilter = e.sender.dataSource.filter;
-        e.sender.dataSource.filter = function () {
-            if (arguments.length > 0) {
-                this.trigger("filtering", arguments);
-            }
-
-            //var result = e.sender.dataSource.originalFilter.apply(this, arguments);
-            //return result;
-        }
-
-        e.sender.dataSource.bind("filtering", function (e) {
-            $("#downlinkChanels th[data-field=" + e[0].filters[0].field + "]").css('color', 'red');
-        });
-
-        onDataBound();
-    }
-
-
     var downlinkChannelsOptions = {
         selectable: "row",
-        dataBound: gridInit,
+        dataBound: onDataBound,
         filterable: {
             extra: false
+        },
+        sortable: {
+            mode: "single",
+            allowUnsort: true
         },
         dataSource: {
             type: "json",
@@ -518,9 +503,32 @@
         http = $http;
         $scope.downlinkChannelsOptions = downlinkChannelsOptions;
         $scope.clickedRow = -1;
+
+        $scope.$on("kendoRendered", function (e) {
+            var grid = $("#downlinkChanels").data("kendoGrid");
+            grid.dataSource.originalFilter = grid.dataSource.filter;
+            grid.dataSource.filter = function () {
+                if (arguments.length > 0) {
+                    this.trigger("filtering", arguments);
+                }
+
+                var result = grid.dataSource.originalFilter.apply(this, arguments);
+                return result;
+            }
+
+            grid.dataSource.bind("filtering", function (e) {
+                $("#downlinkChanels th .k-link").each(function (index, value) { $(value).css('color', 'white'); });
+                if (e[0] !== null) {
+                    for (var i = 0; i < e[0].filters.length; i++) {
+                        $("#downlinkChanels th[data-field=" + e[0].filters[i].field + "] .k-link").css('color', 'red');
+                    }
+                }
+            });
+        });
+
         $scope.openDialog = function (e) {
-            var grid = $("#downlinkChanels").data("kendoGrid")
-                row = grid.tbody.find(">tr:not(.k-grouping-row)").eq($scope.clickedRow);
+            var grid = $("#downlinkChanels").data("kendoGrid"),
+            row = grid.tbody.find(">tr:not(.k-grouping-row)").eq($scope.clickedRow);
             grid.select(row);
             //here to open modal dialog
             var modalInstance = $modal.open({
@@ -542,7 +550,7 @@
         $scope.onChannelSelected = function(dataitem) {
             $scope.selectedchannel = dataitem;
         }
-    }    
+    }
 
     // register my controller module
     var myControllerModule = angular.module("TV2Presets2.ctrl.downlink", ["TV2Presets2.ctrl.downlink.dialog"]);
