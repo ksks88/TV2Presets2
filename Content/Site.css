@@ -21,3 +21,9 @@ textarea {
 {
     min-height: 500px;
 }
+
+#biss-codes .k-invalid-msg
+{
+    width: auto;
+    max-width: 340px;
+}

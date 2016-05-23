@@ -158,6 +158,59 @@
             });
     }
 
+    var bissCodeValidateKey = function (input) {
+        var tr = $(input).closest('tr');
+        console.log($("span[ng-bind='dataItem.name']", tr).text() + " & " + input.val());
+
+        var keyName = $("span[ng-bind='dataItem.name']", tr).text().toUpperCase();
+
+        var length = 0;
+        if (keyName === "BISS-1") {
+            length = 12;
+        }
+        else if (keyName === "BISS-E") {
+            length = 16;
+        }
+        else if (keyName === "RAS") {
+            length = 7;
+        }
+
+        var numberOfChars = input.val().length;
+        if (input.is("[name='bissKey']") && ((keyName == "BISS-1" && numberOfChars > length) || (keyName == "BISS-E" && numberOfChars > length) || (keyName == "RAS" && numberOfChars > length))) {
+            input.attr("data-bisskeyvalidation-msg", keyName + " key cannot be more then " + length + " characters.");
+            return false;
+        }
+
+        return true;
+    }
+
+    var bissCodeValidateName = function (input) {
+        var tr = $(input).closest('tr');
+        console.log($("span[ng-bind='dataItem.bissKey']", tr).text() + " & " + input.val());
+
+        var numberOfChars = $("span[ng-bind='dataItem.bissKey']", tr).text().length;
+
+        var keyName = input.val().toUpperCase();
+
+        var length = 0;
+        if (keyName === "BISS-1") {
+            length = 12;
+        }
+        else if (keyName === "BISS-E") {
+            length = 16;
+        }
+        else if (keyName === "RAS") {
+            length = 7;
+        }
+
+        if (input.is("[name='name']") && ((keyName == "BISS-1" && numberOfChars > length) || (keyName == "BISS-E" && numberOfChars > length) || (keyName == "RAS" && numberOfChars > length))) {
+            input.attr("data-namevalidation-msg", keyName + " key cannot be more then " + length + " characters.");
+            return false;
+        }
+
+        return true;
+    }
+
     var bissCodesOptions = {
         selectable: "row",
         dataSource: {
@@ -200,7 +253,9 @@
                         name: {
                             validation: {
                                 //set validation rules
-                                required: true
+                                required: true,
+
+                                namevalidation: bissCodeValidateName
                             }
                         },
                         bissType: {
@@ -212,7 +267,9 @@
                         bissKey: {
                             validation: {
                                 //set validation rules
-                                required: true
+                                required: true,
+                                
+                                bisskeyvalidation: bissCodeValidateKey
                             }
                         }
                     }
