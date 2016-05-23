@@ -32,6 +32,9 @@ namespace TV2Presets2.Controllers
                 ret.AddRange(Enum.GetValues(type).Cast<int>().Select(en => new EnumRecord { text = Enum.GetName(type, en), value = en }));
             }
 
+            if (enumtype.Equals("BISSTypeEnum"))
+                ret = FilterOutBissTypeEnums(ret);
+
             return ret;
         }
 
@@ -45,6 +48,19 @@ namespace TV2Presets2.Controllers
 
             return "";
 
+        }
+
+        public List<EnumRecord> FilterOutBissTypeEnums(List<EnumRecord> ret)
+        {
+            List<EnumRecord> filteredRecords = new List<EnumRecord>(ret.Capacity - 2);
+            foreach(EnumRecord record in ret)
+            {
+                if (record.value == 1 || record.value == 2)
+                    continue;
+
+                filteredRecords.Add(record);
+            }
+            return filteredRecords;
         }
     }
 }

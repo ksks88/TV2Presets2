@@ -287,15 +287,19 @@
             { field: "name", title: "Name" },
             {
                 field: "bissType", title: "BISS Type", width: "200px", editor: bissTypeEditor, template: function (dataItem) {
+                    if (isNaN(dataItem.bisType))
+                        dataItem.bisType = 0;
+
                     var jsonObjectInstance = $.parseJSON(
                             $.ajax(
                                 {
-                                    url: "http://localhost:49423/Api/Enums?enumtype=BISSTypeEnum&val=" + dataItem.bissType,
+                                    url: "http://localhost:49423/Api/Enums?enumtype=BISSTypeEnum&val=" + dataItem.bisType,
                                     async: false,
                                     dataType: 'json'
                                 }
                             ).responseText
                         );
+
                     return jsonObjectInstance;
                 }
             },
