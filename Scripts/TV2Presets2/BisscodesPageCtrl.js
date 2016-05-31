@@ -130,7 +130,7 @@
     }
 
     var bissTypeEditor = function (container, options) {
-        $("<input required data-text-field='text' data-value-field='value' data-bind='value: " + options.field + "'/>")
+        $("<input id='bissTypeEditor' required name='" + options.field + "' data-text-field='text' data-value-field='value' data-bind='value: " + options.field + "'/>")
             .appendTo(container)
             .kendoComboBox({
                 autoBind: false,
@@ -144,6 +144,8 @@
                     }
                 }
             });
+
+        $('<span class="k-invalid-msg" data-for="' + options.field + '"></span>').appendTo(container);
     }
 
     var ipAddressEditor = function (container, options) {
@@ -159,10 +161,16 @@
     }
 
     var bissCodeValidateKey = function (input) {
-        var tr = $(input).closest('tr');
-        console.log($("span[ng-bind='dataItem.name']", tr).text() + " & " + input.val());
+        var keyName;
+        
+        if ($(".k-state-selected .bissTypeCell").hasClass("k-dirty-cell")) {
+            keyName = $(".k-state-selected .bissTypeCell.k-dirty-cell").text().toUpperCase();
+        }
+        else {
+            keyName = $(".k-state-selected .bissTypeCell").text().toUpperCase();
+        }
 
-        var keyName = $("span[ng-bind='dataItem.name']", tr).text().toUpperCase();
+        console.log(keyName);
 
         var length = 0;
         if (keyName === "BISS-1") {
@@ -176,7 +184,8 @@
         }
 
         var numberOfChars = input.val().length;
-        if (input.is("[name='bissKey']") && ((keyName == "BISS-1" && numberOfChars > length) || (keyName == "BISS-E" && numberOfChars > length) || (keyName == "RAS" && numberOfChars > length))) {
+        console.log(numberOfChars + " " + input.is("[name='bissKey']") + " " +  length);
+        if (input.is("[name='bissKey']") && numberOfChars > length && (keyName === "BISS-1" || keyName === "BISS-E" || keyName === "RAS")) {
             input.attr("data-bisskeyvalidation-msg", keyName + " key cannot be more then " + length + " characters.");
             return false;
         }
@@ -184,13 +193,14 @@
         return true;
     }
 
-    var bissCodeValidateName = function (input) {
-        var tr = $(input).closest('tr');
-        console.log($("span[ng-bind='dataItem.bissKey']", tr).text() + " & " + input.val());
+    var bissCodeValidateType = function (input) {
+
+        var kendoComboBox = $("#bissTypeEditor").data('kendoComboBox');
+        var tr = $(input.context).closest('tr');
 
         var numberOfChars = $("span[ng-bind='dataItem.bissKey']", tr).text().length;
 
-        var keyName = input.val().toUpperCase();
+        var keyName = kendoComboBox.text().toUpperCase();
 
         var length = 0;
         if (keyName === "BISS-1") {
@@ -203,8 +213,9 @@
             length = 7;
         }
 
-        if (input.is("[name='name']") && ((keyName == "BISS-1" && numberOfChars > length) || (keyName == "BISS-E" && numberOfChars > length) || (keyName == "RAS" && numberOfChars > length))) {
-            input.attr("data-namevalidation-msg", keyName + " key cannot be more then " + length + " characters.");
+        if (((keyName == "BISS-1" && numberOfChars > length) || (keyName == "BISS-E" && numberOfChars > length) || (keyName == "RAS" && numberOfChars > length))) {
+            input.attr("data-bisstypevalidation-msg", keyName + " key cannot be more then " + length + " characters.");
+            
             return false;
         }
 
@@ -253,15 +264,15 @@
                         name: {
                             validation: {
                                 //set validation rules
-                                required: true,
-
-                                namevalidation: bissCodeValidateName
+                                required: true
                             }
                         },
                         bissType: {
                             validation: {
                                 //set validation rules
-                                required: true
+                                required: true,
+
+                                bisstypevalidation: bissCodeValidateType
                             }
                         },
                         bissKey: {
@@ -287,13 +298,13 @@
             { field: "name", title: "Name" },
             {
                 field: "bissType", title: "BISS Type", width: "200px", editor: bissTypeEditor, template: function (dataItem) {
-                    if (isNaN(dataItem.bisType))
-                        dataItem.bisType = 0;
+                    if (isNaN(dataItem.bissType))
+                        dataItem.bissType = 0;
 
                     var jsonObjectInstance = $.parseJSON(
                             $.ajax(
                                 {
-                                    url: "http://localhost:49423/Api/Enums?enumtype=BISSTypeEnum&val=" + dataItem.bisType,
+                                    url: "http://localhost:49423/Api/Enums?enumtype=BISSTypeEnum&val=" + dataItem.bissType,
                                     async: false,
                                     dataType: 'json'
                                 }
@@ -301,6 +312,9 @@
                         );
 
                     return jsonObjectInstance;
+                },
+                attributes: {
+                    "class": "bissTypeCell"
                 }
             },
             { field: "bissKey", title: "Key" }
