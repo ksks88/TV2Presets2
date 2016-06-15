@@ -245,3 +245,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/TV2Presets2 - Copy.csproj

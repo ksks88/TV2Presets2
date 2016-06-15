@@ -112,7 +112,7 @@ namespace TV2Presets2.Controllers
 
                    
                     
-                    dynamic ddrte = Marshal.GetActiveObject("DDRTE.Mgmt2");
+                    dynamic ddrte = Marshal.GetActiveObject("DDRTE.Mgmt");
 
                     if (ddrte == null)
                         return "Cannot find Visionic server";
@@ -164,7 +164,7 @@ namespace TV2Presets2.Controllers
                                 SetVisionicVariable(ird.Name, "BISS Mode", ((int) biss.BISSType).ToString(), UniCommand);
                                 SetVisionicVariable(ird.Name, "BISS code", biss.BISSKey, UniCommand);
                             }
-                            SetVisionicVariable(data.IRDName, "BISSCodeName", biss.Name, UniCommand);
+                            SetVisionicVariable(ird.Name, "BISSCodeName", biss.Name, UniCommand);
                         }
                        
 
