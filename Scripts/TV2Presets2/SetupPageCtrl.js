@@ -1,30 +1,31 @@
-﻿(function() {
+﻿(function () {
+    //TODO: Refactor hardcoded url
     var satellitePositionsOptions = {
         selectable: "row",
         dataSource: {
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/SatellitePositions",
+                    url: "http://10.209.10.10/Api/SatellitePositions",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function(data) {
-                        return "http://localhost:49423/Api/SatellitePositions/" + data.id;
+                        return "http://10.209.10.10/Api/SatellitePositions/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT"
                 },
                 destroy: {
                     url: function(data) {
-                        return "http://localhost:49423/Api/SatellitePositions/" + data.id;
+                        return "http://10.209.10.10/Api/SatellitePositions/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/SatellitePositions",
+                    url: "http://10.209.10.10/Api/SatellitePositions",
                     dataType: "json",
                     type: "POST"
                 }
@@ -79,7 +80,7 @@
         },
         
     };
-
+    //TODO: Refactor hardcoded url
     var satellitePositionDropDownEditor = function (container, options) {
         $("<input required data-text-field='name' data-value-field='id' data-bind='value: " + options.field + "'/>")
             .appendTo(container)
@@ -88,7 +89,7 @@
                 dataSource: {
                     transport: {
                         read: {
-                            url: "http://localhost:49423/Api/SatellitePositions",
+                            url: "http://10.209.10.10/Api/SatellitePositions",
                             dataType: "json",
                             type: "GET"
                         }
@@ -97,19 +98,20 @@
             });
     }
 
+    //TODO: Refactor hardcoded url
     var satellitesOptions = {
         selectable: "row",
         dataSource: {
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/Satellites",
+                    url: "http://10.209.10.10/Api/Satellites",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function(data) {
-                        return "http://localhost:49423/Api/Satellites/" + data.id;
+                        return "http://10.209.10.10/Api/Satellites/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT",
@@ -119,13 +121,13 @@
                 },
                 destroy: {
                     url: function(data) {
-                        return "http://localhost:49423/Api/Satellites/" + data.id;
+                        return "http://10.209.10.10/Api/Satellites/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/Satellites",
+                    url: "http://10.209.10.10/Api/Satellites",
                     dataType: "json",
                     type: "POST",
                     complete: function (data) {
@@ -198,20 +200,20 @@
         },
         
     }
-
+    //TODO: Refactor hardcoded url
     var fixedAntennasOptions = {
         selectable: "row",
         dataSource: {
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/FixedAntennas",
+                    url: "http://10.209.10.10/Api/FixedAntennas",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/FixedAntennas/" + data.id;
+                        return "http://10.209.10.10/Api/FixedAntennas/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT",
@@ -221,13 +223,13 @@
                 },
                 destroy: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/FixedAntennas/" + data.id;
+                        return "http://10.209.10.10/Api/FixedAntennas/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/FixedAntennas",
+                    url: "http://10.209.10.10/Api/FixedAntennas",
                     dataType: "json",
                     type: "POST",
                     complete: function (data) {
@@ -370,33 +372,33 @@
         },
         
     }
-
+    //TODO: Refactor hardcoded url
     var steerableAntennasOptions = {
         selectable: "row",
         dataSource: {
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/SteerableAntennas",
+                    url: "http://10.209.10.10/Api/SteerableAntennas",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/SteerableAntennas/" + data.id;
+                        return "http://10.209.10.10/Api/SteerableAntennas/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT"
                 },
                 destroy: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/SteerableAntennas/" + data.id;
+                        return "http://10.209.10.10/Api/SteerableAntennas/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/SteerableAntennas",
+                    url: "http://10.209.10.10/Api/SteerableAntennas",
                     dataType: "json",
                     type: "POST"
                 }
@@ -465,7 +467,7 @@
         
     };
 
-
+    //TODO: Refactor hardcoded url
     var irdTypeEditor = function(container, options) {
         $("<input required data-text-field='text' data-value-field='value' data-bind='value: " + options.field + "'/>")
             .appendTo(container)
@@ -474,7 +476,7 @@
                 dataSource: {
                     transport: {
                         read : {
-                            url: "http://localhost:49423/Api/Enums?enumtype=IRDTypes",
+                            url: "http://10.209.10.10/Api/Enums?enumtype=IRDTypes",
                             dataType: "json",
                             type: "GET"
                         }
@@ -494,33 +496,33 @@
                 }
             });
     }
-
+    //TODO: Refactor hardcoded url
     var irdsOptions = {
         selectable: "row",
         dataSource: {
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/IRDs",
+                    url: "http://10.209.10.10/Api/IRDs",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/IRDs/" + data.id;
+                        return "http://10.209.10.10/Api/IRDs/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT"
                 },
                 destroy: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/IRDs/" + data.id;
+                        return "http://10.209.10.10/Api/IRDs/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/IRDs",
+                    url: "http://10.209.10.10/Api/IRDs",
                     dataType: "json",
                     type: "POST"
                 }
@@ -601,10 +603,11 @@
                     //    default:
                     //        return "error";
                     //}
+                    //TODO: Refactor hardcoded url
                     var jsonObjectInstance = $.parseJSON(
                         $.ajax(
                             {
-                                url: "http://localhost:49423/Api/Enums?enumtype=IRDTypes&val=" + dataitem.irdType,
+                                url: "http://10.209.10.10/Api/Enums?enumtype=IRDTypes&val=" + dataitem.irdType,
                                 async: false,
                                 dataType: 'json'
                             }
@@ -628,32 +631,33 @@
         
     };
 
+    //TODO: Refactor hardcoded url
     var extCardsOptions = {
         selectable: "row",
         dataSource: {
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/EXTCards",
+                    url: "http://10.209.10.10/Api/EXTCards",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/EXTCards/" + data.id;
+                        return "http://10.209.10.10/Api/EXTCards/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT"
                 },
                 destroy: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/EXTCards/" + data.id;
+                        return "http://10.209.10.10/Api/EXTCards/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/EXTCards",
+                    url: "http://10.209.10.10/Api/EXTCards",
                     dataType: "json",
                     type: "POST"
                 }

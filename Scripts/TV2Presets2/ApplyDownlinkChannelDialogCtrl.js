@@ -2,8 +2,8 @@
     var IRDsDataSource = {
         type: "json",
         transport: {
-            read: {
-                url: "http://localhost:49423/Api/IRDs",
+            read: {//TODO: Refactor hardcoded url
+                url: "http://10.209.10.10/Api/IRDs",
                 dataType: "json",
                 type: "GET"
             }
@@ -18,33 +18,34 @@
         $scope.AntennasDataSource = [];
         $scope.selectedAntennaType = "";
 
-        $http.get("http://localhost:49423/Api/Enums?enumtype=PolarisationEnum&val=" + dwlChannel.polarisation).success(function (result) {
+        //TODO: Refactor hardcoded urls
+        $http.get("http://10.209.10.10/Api/Enums?enumtype=PolarisationEnum&val=" + dwlChannel.polarisation).success(function (result) {
             $scope.PolarisationEnum = result;
         });
-        $http.get("http://localhost:49423/Api/Enums?enumtype=FECEnum&val=" + dwlChannel.fec).success(function (result) {
+        $http.get("http://10.209.10.10/Api/Enums?enumtype=FECEnum&val=" + dwlChannel.fec).success(function (result) {
             $scope.FECEnum = result;
         });
-        $http.get("http://localhost:49423/Api/Enums?enumtype=RollOffEnum&val=" + dwlChannel.rollOff).success(function (result) {
+        $http.get("http://10.209.10.10/Api/Enums?enumtype=RollOffEnum&val=" + dwlChannel.rollOff).success(function (result) {
             $scope.RollOffEnum = result;
         });
-        $http.get("http://localhost:49423/Api/Enums?enumtype=SDHD&val=" + dwlChannel.sdhd).success(function (result) {
+        $http.get("http://10.209.10.10/Api/Enums?enumtype=SDHD&val=" + dwlChannel.sdhd).success(function (result) {
             $scope.SDHD = result;
         });
-        $http.get("http://localhost:49423/Api/Enums?enumtype=ModulationEnum&val=" + dwlChannel.modulation).success(function (result) {
+        $http.get("http://10.209.10.10/Api/Enums?enumtype=ModulationEnum&val=" + dwlChannel.modulation).success(function (result) {
             $scope.ModulationEnum = result;
         });
 
-        $http.get("http://localhost:49423/Api/IRDs").success(function (result) {
+        $http.get("http://10.209.10.10/Api/IRDs").success(function (result) {
             $scope.IRDsDataSource = result;
         });
 
-        $http.get("http://localhost:49423/Api/BISSCodes").success(function (result) {
+        $http.get("http://10.209.10.10/Api/BISSCodes").success(function (result) {
             $scope.BISSCodesDataSource = result;
         });
-        $http.get("http://localhost:49423/Api/EXTCards").success(function (result) {
+        $http.get("http://10.209.10.10/Api/EXTCards").success(function (result) {
             $scope.EXTCardsDataSource = result;
         });
-        $http.get("http://localhost:49423/Api/SteerableAntennas").success(function (result) {
+        $http.get("http://10.209.10.10/Api/SteerableAntennas").success(function (result) {
             $scope.steerableAntennas = result;
         });
 
@@ -56,7 +57,8 @@
             }
             else {
                 $scope.selectedAntennaType = "Steerable";
-                $http.get("http://localhost:49423/Api/SteerableAntennas").success(function (result) {
+                //TODO: Refactor hardcoded url
+                $http.get("http://10.209.10.10/Api/SteerableAntennas").success(function (result) {
                     $scope.AntennasDataSource = result;
                 });
             }

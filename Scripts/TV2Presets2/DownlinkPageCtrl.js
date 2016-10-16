@@ -9,7 +9,7 @@
                 dataSource: {
                     transport: {
                         read: {
-                            url: "http://localhost:49423/Api/Satellites",
+                            url: "http://10.209.10.10/Api/Satellites",
                             dataType: "json",
                             type: "GET"
                         }
@@ -23,7 +23,7 @@
                 dataSource: {
                     transport: {
                         read: {
-                            url: "http://localhost:49423/Api/Satellites",
+                            url: "http://10.209.10.10/Api/Satellites",
                             dataType: "json",
                             type: "GET"
                         }
@@ -42,7 +42,7 @@
                dataSource: {
                    transport: {
                        read: {
-                           url: "http://localhost:49423/Api/Enums?enumtype=PolarisationEnum",
+                           url: "http://10.209.10.10/Api/Enums?enumtype=PolarisationEnum",
                            dataType: "json",
                            type: "GET"
                        }
@@ -57,7 +57,7 @@
                dataSource: {
                    transport: {
                        read: {
-                           url: "http://localhost:49423/Api/Enums?enumtype=PolarisationEnum",
+                           url: "http://10.209.10.10/Api/Enums?enumtype=PolarisationEnum",
                            dataType: "json",
                            type: "GET"
                        }
@@ -76,7 +76,7 @@
                dataSource: {
                    transport: {
                        read: {
-                           url: "http://localhost:49423/Api/Enums?enumtype=FECEnum",
+                           url: "http://10.209.10.10/Api/Enums?enumtype=FECEnum",
                            dataType: "json",
                            type: "GET"
                        }
@@ -91,7 +91,7 @@
             dataSource: {
                 transport: {
                     read: {
-                        url: "http://localhost:49423/Api/Enums?enumtype=FECEnum",
+                        url: "http://10.209.10.10/Api/Enums?enumtype=FECEnum",
                         dataType: "json",
                         type: "GET"
                     }
@@ -110,7 +110,7 @@
                dataSource: {
                    transport: {
                        read: {
-                           url: "http://localhost:49423/Api/Enums?enumtype=RollOffEnum",
+                           url: "http://10.209.10.10/Api/Enums?enumtype=RollOffEnum",
                            dataType: "json",
                            type: "GET"
                        }
@@ -125,7 +125,7 @@
             dataSource: {
                 transport: {
                     read: {
-                        url: "http://localhost:49423/Api/Enums?enumtype=RollOffEnum",
+                        url: "http://10.209.10.10/Api/Enums?enumtype=RollOffEnum",
                         dataType: "json",
                         type: "GET"
                     }
@@ -144,7 +144,7 @@
                dataSource: {
                    transport: {
                        read: {
-                           url: "http://localhost:49423/Api/Enums?enumtype=SDHD",
+                           url: "http://10.209.10.10/Api/Enums?enumtype=SDHD",
                            dataType: "json",
                            type: "GET"
                        }
@@ -159,7 +159,7 @@
             dataSource: {
                 transport: {
                     read: {
-                        url: "http://localhost:49423/Api/Enums?enumtype=SDHD",
+                        url: "http://10.209.10.10/Api/Enums?enumtype=SDHD",
                         dataType: "json",
                         type: "GET"
                     }
@@ -177,7 +177,7 @@
                dataSource: {
                    transport: {
                        read: {
-                           url: "http://localhost:49423/Api/Enums?enumtype=ModulationEnum",
+                           url: "http://10.209.10.10/Api/Enums?enumtype=ModulationEnum",
                            dataType: "json",
                            type: "GET"
                        }
@@ -192,7 +192,7 @@
             dataSource: {
                 transport: {
                     read: {
-                        url: "http://localhost:49423/Api/Enums?enumtype=ModulationEnum",
+                        url: "http://10.209.10.10/Api/Enums?enumtype=ModulationEnum",
                         dataType: "json",
                         type: "GET"
                     }
@@ -211,7 +211,7 @@
         var jsonObjectInstance = $.parseJSON(
                        $.ajax(
                            {
-                               url: "http://localhost:49423/Api/Enums?enumtype=" + enumneme + "&val=" + enumvalue,
+                               url: "http://10.209.10.10/Api/Enums?enumtype=" + enumneme + "&val=" + enumvalue,
                                async: false,
                                dataType: 'json'
                            }
@@ -241,7 +241,7 @@
         var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
         dataItem.satellite = null;
 
-        http.post('http://localhost:49423/Api/DownlinkChannels', dataItem).success(function (data) {
+        http.post('http://10.209.10.10/Api/DownlinkChannels', dataItem).success(function (data) {
             $("#downlinkChanels").data("kendoGrid").dataSource.read();
         });
     }
@@ -260,13 +260,13 @@
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/DownlinkChannels",
+                    url: "http://10.209.10.10/Api/DownlinkChannels",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function(data) {
-                        return "http://localhost:49423/Api/DownlinkChannels/" + data.id;
+                        return "http://10.209.10.10/Api/DownlinkChannels/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT",
@@ -276,13 +276,13 @@
                 },
                 destroy: {
                     url: function(data) {
-                        return "http://localhost:49423/Api/DownlinkChannels/" + data.id;
+                        return "http://10.209.10.10/Api/DownlinkChannels/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/DownlinkChannels",
+                    url: "http://10.209.10.10/Api/DownlinkChannels",
                     dataType: "json",
                     type: "POST",
                     complete: function (data) {

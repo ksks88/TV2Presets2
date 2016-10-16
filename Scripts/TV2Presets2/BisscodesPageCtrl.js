@@ -8,7 +8,7 @@
                 dataSource: {
                     transport: {
                         read: {
-                            url: "http://localhost:49423/Api/SatellitePositions",
+                            url: "http://10.209.10.10/Api/SatellitePositions",
                             dataType: "json",
                             type: "GET"
                         }
@@ -23,26 +23,26 @@
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/SteerableAntennas",
+                    url: "http://10.209.10.10/Api/SteerableAntennas",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/SteerableAntennas/" + data.id;
+                        return "http://10.209.10.10/Api/SteerableAntennas/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT"
                 },
                 destroy: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/SteerableAntennas/" + data.id;
+                        return "http://10.209.10.10/Api/SteerableAntennas/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/SteerableAntennas",
+                    url: "http://10.209.10.10/Api/SteerableAntennas",
                     dataType: "json",
                     type: "POST"
                 }
@@ -120,7 +120,7 @@
                 dataSource: {
                     transport: {
                         read: {
-                            url: "http://localhost:49423/Api/Enums?enumtype=IRDTypes",
+                            url: "http://10.209.10.10/Api/Enums?enumtype=IRDTypes",
                             dataType: "json",
                             type: "GET"
                         }
@@ -137,7 +137,7 @@
                 dataSource: {
                     transport: {
                         read: {
-                            url: "http://localhost:49423/Api/Enums?enumtype=BISSTypeEnum",
+                            url: "http://10.209.10.10/Api/Enums?enumtype=BISSTypeEnum",
                             dataType: "json",
                             type: "GET"
                         }
@@ -228,26 +228,26 @@
             type: "json",
             transport: {
                 read: {
-                    url: "http://localhost:49423/Api/BISSCodes",
+                    url: "http://10.209.10.10/Api/BISSCodes",
                     dataType: "json",
                     type: "GET"
                 },
                 update: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/BISSCodes/" + data.id;
+                        return "http://10.209.10.10/Api/BISSCodes/" + data.id;
                     },
                     dataType: "json",
                     type: "PUT"
                 },
                 destroy: {
                     url: function (data) {
-                        return "http://localhost:49423/Api/BISSCodes/" + data.id;
+                        return "http://10.209.10.10/Api/BISSCodes/" + data.id;
                     },
                     dataType: "json",
                     type: "DELETE"
                 },
                 create: {
-                    url: "http://localhost:49423/Api/BISSCodes",
+                    url: "http://10.209.10.10/Api/BISSCodes",
                     dataType: "json",
                     type: "POST"
                 }
@@ -304,7 +304,7 @@
                     var jsonObjectInstance = $.parseJSON(
                             $.ajax(
                                 {
-                                    url: "http://localhost:49423/Api/Enums?enumtype=BISSTypeEnum&val=" + dataItem.bissType,
+                                    url: "http://10.209.10.10/Api/Enums?enumtype=BISSTypeEnum&val=" + dataItem.bissType,
                                     async: false,
                                     dataType: 'json'
                                 }

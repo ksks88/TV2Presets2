@@ -3,7 +3,7 @@
 
     var TV2DataServices = function($http) {
         var applyDownlinkPreset = function(presetdata) {
-            return $http.post("http://localhost:49423/Api/TV2DataServices", presetdata);
+            return $http.post("http://10.209.10.10/Api/TV2DataServices", presetdata);
         };
 
         
